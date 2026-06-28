@@ -13,13 +13,13 @@
 #define MAX_ARRAY 100000
 #define MAX_PATH_LEN 260
 
-double source[MAX_ARRAY];  /* исходный массив */
-double sorted[MAX_ARRAY];  /* отсортированный массив */
-int    n = 0;      /* количество элементов */
-int    hasSorted = 0;      /* флаг: была ли сортировка */
+double source[MAX_ARRAY];  
+double sorted[MAX_ARRAY];  
+int    n = 0;     
+int    hasSorted = 0;     
 char   filePath[MAX_PATH_LEN] = "";
 
-/* форматируем число: целое - без точки, дробное - без экспоненты */
+
 void FormatNumber(double v, char* buf, size_t bufSize)
 {
     if (v == floor(v)) {
@@ -49,7 +49,7 @@ void PrintArray(const double* arr, int count)
     printf("\n");
 }
 
-/* режем строку на числа по разделителям */
+
 int ParseArray(char* text)
 {
     int count = 0;
@@ -126,34 +126,13 @@ void WriteArray(FILE* f, const double* arr, int count)
     fprintf(f, "\n");
 }
 
-/* пузырьковая сортировка по возрастанию */
-void BubbleSort(const double* src, double* dst, int count,
-    long long* comparisons, long long* swaps)
+
+void BubbleSort()
 {
-    int i, j;
-    int swapped;
-
-    for (i = 0; i < count; i++) dst[i] = src[i];
-    *comparisons = 0;
-    *swaps = 0;
-
-    for (i = 0; i < count - 1; i++) {
-        swapped = 0;
-        for (j = 0; j < count - i - 1; j++) {
-            (*comparisons)++;
-            if (dst[j] > dst[j + 1]) {
-                double tmp = dst[j];
-                dst[j] = dst[j + 1];
-                dst[j + 1] = tmp;
-                (*swaps)++;
-                swapped = 1;
-            }
-        }
-        if (!swapped) break;
-    }
+    //Вадим
 }
 
-/* диалог выбора файла для открытия */
+
 int DialogOpenFile(char* outPath)
 {
     OPENFILENAMEA ofn;
@@ -173,7 +152,7 @@ int DialogOpenFile(char* outPath)
     return 0;
 }
 
-/* диалог сохранения файла */
+
 int DialogSaveFile(char* outPath)
 {
     OPENFILENAMEA ofn;
@@ -292,7 +271,7 @@ void MenuSave(void)
     }
     while (getchar() != '\n');
 
-    /* если текущий файл не задан — идём в диалог */
+    
     if ((choice == 1 || choice == 2) && filePath[0] == '\0') {
         printf("Текущий файл не задан, открывается диалог сохранения...\n");
         choice = 3;
