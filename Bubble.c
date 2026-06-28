@@ -127,11 +127,31 @@ void WriteArray(FILE* f, const double* arr, int count)
 }
 
 
-void BubbleSort()
+void BubbleSort(const double* src, double* dst, int count,
+    long long* comparisons, long long* swaps)
 {
-    //Вадим
-}
+    int i, j;
+    int swapped;
 
+    for (i = 0; i < count; i++) dst[i] = src[i];
+    *comparisons = 0;
+    swaps = 0;
+
+    for (i = 0; i < count - 1; i++) {
+        swapped = 0;
+        for (j = 0; j < count - i - 1; j++) {
+            (comparisons)++;
+            if (dst[j] > dst[j + 1]) {
+                double tmp = dst[j];
+                dst[j] = dst[j + 1];
+                dst[j + 1] = tmp;
+                (*swaps)++;
+                swapped = 1;
+            }
+        }
+        if (!swapped) break;
+    }
+}
 
 int DialogOpenFile(char* outPath)
 {
